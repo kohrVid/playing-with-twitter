@@ -1,0 +1,26 @@
+<h3>Tweet as Mischa</h3>
+<%= form_for @tweet  do |f| %> 
+	<%= f.text_area :message %><br />
+	<%= f.submit %>
+<%end%>
+
+<ul>
+	<% @tweets.each do |t| %>
+		<li><%= t.user.screen_name + ": " + t.text %> <%= t.created_at.strftime("%d %B %Y %H:%M:%S") %> </li>
+	<%end%>
+</ul>
+<center>
+	<h3>Images Of Food From Twitter</h3>
+	<div id="owl-demo" class="owl-carousel owl-theme">
+		<% @images.each do |i| %>
+			<%if i.media.present? %>
+				<div class = "item"> 
+					<a href = <%= i.url%>>
+						<%= image_tag(i.media[0]["media_url"], :height => "300") %>
+					</a>
+				</div>
+			<%end%>
+		<%end%>
+	</div>
+</center>
+
